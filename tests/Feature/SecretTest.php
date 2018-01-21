@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Secret;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -120,5 +121,24 @@ class SecretTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertNull(Secret::where('public_id', 'secret')->first());
+    }
+
+    /**
+     * @test
+     */
+    public function set_expires_in_should_be_set()
+    {
+        $data = [
+            'message' => 'something-sort-of-secret',
+            'expires_in' => 1,
+        ];
+
+        $response = $this->json('POST', route('secret.store'), $data);
+        $response->assertStatus(200);
+
+        /** @var Secret $secret */
+        $secret = Secret::first();
+
+        $this->assertEquals(0, Carbon::now()->addDay()->diffInSeconds($secret->expires_in));
     }
 }

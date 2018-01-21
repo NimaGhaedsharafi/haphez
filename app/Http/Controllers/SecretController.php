@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Secret;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SecretController extends Controller
@@ -16,6 +17,7 @@ class SecretController extends Controller
 
         $secret = new Secret();
         $secret->message = $request->input('message');
+        $secret->expires_in = Carbon::now()->addDay($request->input('expires_in', 1));
         $secret->public_id = str_random(16);
         $secret->save();
 
