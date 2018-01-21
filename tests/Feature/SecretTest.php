@@ -27,6 +27,11 @@ class SecretTest extends TestCase
 
         $this->assertDatabaseHas((new Secret())->getTable(), $data);
 
+        $response->assertJsonStructure([
+            'url'
+        ]);
+    }
+
     /**
      * @test
      */

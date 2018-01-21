@@ -18,5 +18,9 @@ class SecretController extends Controller
         $secret->message = $request->input('message');
         $secret->public_id = 'random';
         $secret->save();
+
+        return [
+            'url' => $secret->public_id
+        ];
     }
 }
