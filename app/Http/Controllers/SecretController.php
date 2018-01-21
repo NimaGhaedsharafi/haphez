@@ -36,6 +36,9 @@ class SecretController extends Controller
             return response(['error' => 'secret not found or is expired'], 404);
         }
 
+        // it should be set as deleted after read
+        $secret->delete();
+
         return [
             'message' => $secret->message,
             'expires_in' => $secret->expires_in

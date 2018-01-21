@@ -109,4 +109,17 @@ class SecretTest extends TestCase
             'error'
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function get_secret_should_set_delete_the_secret_after_read()
+    {
+        factory(Secret::class)->create();
+
+        $response = $this->json('GET', route('secret.get', 'secret'));
+        $response->assertStatus(200);
+        
+        $this->assertNull(Secret::where('public_id', 'secret')->first());
+    }
 }
