@@ -20,7 +20,7 @@ class SecretController extends Controller
         $secret->save();
 
         return [
-            'url' => $secret->public_id
+            'url' => route('secret.get', [$secret->public_id])
         ];
     }
 
