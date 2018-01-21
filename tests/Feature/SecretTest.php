@@ -96,4 +96,17 @@ class SecretTest extends TestCase
             'error'
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function invalid_public_id_respond_as_not_found()
+    {
+        $response = $this->json('GET', route('secret.get', 'secret'));
+        $response->assertStatus(404);
+
+        $response->assertJsonStructure([
+            'error'
+        ]);
+    }
 }

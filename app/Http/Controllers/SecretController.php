@@ -32,7 +32,7 @@ class SecretController extends Controller
     {
         $secret = Secret::where('public_id', trim($publicId))->first();
 
-        if ($secret->expires_in->isPast()) {
+        if ($secret === null || $secret->expires_in->isPast()) {
             return response(['error' => 'secret not found or is expired'], 404);
         }
 
