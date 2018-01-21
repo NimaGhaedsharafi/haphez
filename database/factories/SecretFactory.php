@@ -10,3 +10,9 @@ $factory->define(Secret::class, function () {
         'expires_in' => Carbon::now()->addDay()
     ];
 });
+
+$factory->state(Secret::class, 'expired', function () {
+    return [
+        'expires_in' => Carbon::now()->yesterday()
+    ];
+});

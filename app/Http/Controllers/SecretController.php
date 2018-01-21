@@ -30,7 +30,11 @@ class SecretController extends Controller
      */
     public function get($publicId)
     {
-        $secret = Secret::where('public_id', trim($publicId))->firstOrFail();
+        $secret = Secret::where('public_id', trim($publicId))->first();
+
+        if ($secret->expires_in->isPast()) {
+            return response(['error' => 'secret not found or is expired'], 404);
+        }
 
         return [
             'message' => $secret->message,

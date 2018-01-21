@@ -81,4 +81,19 @@ class SecretTest extends TestCase
             'message', 'expires_in'
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function get_expired_secret_should_not_found()
+    {
+        factory(Secret::class)->states('expired')->create();
+
+        $response = $this->json('GET', route('secret.get', 'secret'));
+        $response->assertStatus(404);
+
+        $response->assertJsonStructure([
+            'error'
+        ]);
+    }
 }

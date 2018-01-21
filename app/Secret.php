@@ -12,4 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Secret extends Model
 {
     use SoftDeletes;
+
+    protected $dates = [
+        'expires_in'
+    ];
 }
