@@ -10,6 +10,10 @@ class SecretController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'message' => 'required'
+        ]);
+
         $secret = new Secret();
         $secret->message = $request->input('message');
         $secret->public_id = 'random';

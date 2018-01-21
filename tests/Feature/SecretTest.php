@@ -26,5 +26,20 @@ class SecretTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertDatabaseHas((new Secret())->getTable(), $data);
+
+    /**
+     * @test
+     */
+    public function store_should_not_work_on_empty_message()
+    {
+        $data = [
+            'message' => ''
+        ];
+
+        $response = $this->json('POST', route('secret.store'), $data);
+        $response->assertStatus(422);
+
+        $this->assertDatabaseMissing((new Secret())->getTable(), $data);
+    }
     }
 }
