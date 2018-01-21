@@ -11,13 +11,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class SecretTest extends TestCase
 {
     use DatabaseTransactions;
+
     /**
      * @test
      */
     public function store_secret_should_work_fine()
     {
-        $this->disableExceptionHandler();
-        
         $data = [
             'message' => 'something-sort-of-secret'
         ];
@@ -119,7 +118,7 @@ class SecretTest extends TestCase
 
         $response = $this->json('GET', route('secret.get', 'secret'));
         $response->assertStatus(200);
-        
+
         $this->assertNull(Secret::where('public_id', 'secret')->first());
     }
 }
