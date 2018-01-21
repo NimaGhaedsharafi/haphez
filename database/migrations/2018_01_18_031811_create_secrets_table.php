@@ -15,7 +15,7 @@ class CreateSecretsTable extends Migration
     {
         Schema::create('secrets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('public_id')->index();
+            $table->string('public_id')->unique();
             $table->text('message');
             $table->timestamp('expires_in')->index();
             $table->timestamps();
