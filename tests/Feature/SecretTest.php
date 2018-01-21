@@ -46,5 +46,24 @@ class SecretTest extends TestCase
 
         $this->assertDatabaseMissing((new Secret())->getTable(), $data);
     }
+
+    /**
+     * @test
+     */
+    public function store_secret_should_set_public_id()
+    {
+        $this->disableExceptionHandler();
+
+        $data = [
+            'message' => 'something-sort-of-secret'
+        ];
+
+        $response = $this->json('POST', route('secret.store'), $data);
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas((new Secret())->getTable(), $data);
+
+        $secret = Secret::first();
+        $this->assertNotEquals('', $secret->public_id);
     }
 }

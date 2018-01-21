@@ -13,10 +13,10 @@ class SecretController extends Controller
         $this->validate($request, [
             'message' => 'required'
         ]);
-
+        
         $secret = new Secret();
         $secret->message = $request->input('message');
-        $secret->public_id = 'random';
+        $secret->public_id = str_random(16);
         $secret->save();
 
         return [
