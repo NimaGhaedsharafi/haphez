@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'secret', 'as' => 'secret.'], function () {
     Route::post('store', ['as' => 'store', 'uses' => 'SecretController@store']);
+    Route::get('{publicId}', ['as' => 'get', 'uses' => 'SecretController@get']);
 });

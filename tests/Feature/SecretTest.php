@@ -66,4 +66,19 @@ class SecretTest extends TestCase
         $secret = Secret::first();
         $this->assertNotEquals('', $secret->public_id);
     }
+
+    /**
+     * @test
+     */
+    public function get_secret_should_work_fine()
+    {
+        factory(Secret::class)->create();
+
+        $response = $this->json('GET', route('secret.get', 'secret'));
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure([
+            'message', 'expires_in'
+        ]);
+    }
 }

@@ -13,7 +13,7 @@ class SecretController extends Controller
         $this->validate($request, [
             'message' => 'required'
         ]);
-        
+
         $secret = new Secret();
         $secret->message = $request->input('message');
         $secret->public_id = str_random(16);
@@ -21,6 +21,20 @@ class SecretController extends Controller
 
         return [
             'url' => $secret->public_id
+        ];
+    }
+
+    /**
+     * @param $publicId
+     * @return array
+     */
+    public function get($publicId)
+    {
+        $secret = Secret::where('public_id', trim($publicId))->firstOrFail();
+
+        return [
+            'message' => $secret->message,
+            'expires_in' => $secret->expires_in
         ];
     }
 }
