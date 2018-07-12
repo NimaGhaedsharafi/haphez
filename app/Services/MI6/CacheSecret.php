@@ -34,6 +34,6 @@ class CacheSecret implements SecretService
      */
     public function get(string $publicId): string
     {
-        // TODO: Implement get() method.
+        return Cache::get($publicId, null);
     }
 }
