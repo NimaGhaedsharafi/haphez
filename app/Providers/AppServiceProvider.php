@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\MI6\CacheSecret;
 use App\Services\MI6\DatabaseSecret;
 use App\Services\MI6\SecretService;
 use Illuminate\Support\Facades\Schema;
@@ -26,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(SecretService::class, DatabaseSecret::class);
+        $this->app->singleton(SecretService::class, function ($app) {
+            \Log::info($app->config['secret']['provider']);
+            if ($app->config['secret']['provider'] == 'cache') {
+                return new CacheSecret();
+            } else {
+                return new DatabaseSecret();
+            }
+        });
     }
 }
