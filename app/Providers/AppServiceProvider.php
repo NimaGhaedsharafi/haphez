@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(SecretService::class, function ($app) {
-            \Log::info($app->config['secret']['provider']);
             if ($app->config['secret']['provider'] == 'cache') {
                 return new CacheSecret();
             }
