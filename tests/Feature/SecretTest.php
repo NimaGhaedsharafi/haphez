@@ -52,9 +52,10 @@ class SecretTest extends TestCase
      */
     public function get_expired_secret_should_not_found()
     {
-        factory(Secret::class)->states('expired')->create();
+        $response = json_decode($this->json('POST', route('secret.store'), ['message' => 'something-sort-of-secret'])
+            ->assertStatus(200)->getContent());
 
-        $this->json('GET', route('secret.get', 'secret'))
+        $this->json('GET', route('secret.get', $response->url))
             ->assertStatus(404);
     }
 
