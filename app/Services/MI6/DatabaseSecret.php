@@ -32,7 +32,7 @@ class DatabaseSecret implements SecretService
         if (strlen($message) == 0) {
             throw new InvalidArgument('message');
         }
-        
+
         $secret = new Secret();
         $secret->message = $message;
         $secret->expires_in = $expiresIn;
