@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SecretService::class, DatabaseSecret::class);
+        $this->app->singleton(SecretService::class, DatabaseSecret::class);
     }
 }
