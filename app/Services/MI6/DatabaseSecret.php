@@ -45,7 +45,7 @@ class DatabaseSecret implements SecretService
     {
         $secret = Secret::where('public_id', trim($publicId))->first();
 
-        if ($secret->expires_in->isPast()) {
+        if ($secret === null || $secret->expires_in->isPast()) {
             throw new NotFound();
         }
 
