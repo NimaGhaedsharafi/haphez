@@ -52,6 +52,23 @@ class CacheTest extends TestCase
         $service->get($publicId);
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function test_get_an_expired_secret_should_throw_exception()
+    {
+        $this->markTestSkipped();
+        
+        /** @var CacheSecret $service */
+        $service = new CacheSecret();
+        $publicId = $service->store('my secret', Carbon::now()->addHour());
+
+        Carbon::setTestNow(Carbon::tomorrow());
+        $this->assertNotEmpty($publicId);
+        $this->expectException(NotFound::class);
+        $service->get($publicId);
+    }
+
     public function test_empty_string_should_not_be_stored_and_throw_exception()
     {
         /** @var CacheSecret $service */
