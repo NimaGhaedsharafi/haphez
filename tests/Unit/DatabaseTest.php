@@ -114,6 +114,12 @@ class DatabaseTest extends TestCase
 
         $this->expectException(InvalidArgument::class);
         $service->store('', Carbon::tomorrow());
+    }
+
+    public function test_whitespace_is_not_a_valid_argument()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
 
         // we don't care about zero-length messages as well
         $this->expectException(InvalidArgument::class);
