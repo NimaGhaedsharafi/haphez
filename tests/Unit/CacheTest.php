@@ -25,4 +25,13 @@ class CacheTest extends TestCase
         $this->assertNotEmpty($publicId);
         $this->assertTrue(Cache::has($publicId));
     }
+
+    public function test_get_a_secret()
+    {
+        /** @var CacheSecret $service */
+        $service = new CacheSecret();
+        $publicId = $service->store('my secret', Carbon::tomorrow());
+
+        $this->assertEquals('my secret', $service->get($publicId));
+    }
 }
