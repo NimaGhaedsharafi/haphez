@@ -37,14 +37,9 @@ class SecretTest extends TestCase
      */
     public function get_secret_should_work_fine()
     {
-        $data = [
-            'message' => 'something-sort-of-secret'
-        ];
+        $response = json_decode($this->json('POST', route('secret.store'), ['message' => 'something-sort-of-secret'])
+            ->assertStatus(200)->getContent());
 
-        $response = $this->json('POST', route('secret.store'), $data);
-        $response->assertStatus(200);
-        $response = json_decode($response->getContent());
-        
         $this->json('GET', route('secret.get', $response->url))
             ->assertStatus(200)
             ->assertJsonStructure([
