@@ -10,6 +10,7 @@ namespace App\Services\MI6;
 
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class CacheSecret implements SecretService
 {
@@ -21,7 +22,10 @@ class CacheSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn): string
     {
-        
+        $public_id = str_random(16);
+        Cache::put($public_id, $message, $expiresIn->diffInMinutes(Carbon::now()));
+
+        return $public_id;
     }
 
     /**
