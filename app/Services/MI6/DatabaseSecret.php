@@ -50,7 +50,7 @@ class DatabaseSecret implements SecretService
         }
 
         // it should be delete after view!
-        $secret->delete();
+        $secret->forceDelete();
 
         return $secret->message;
     }
