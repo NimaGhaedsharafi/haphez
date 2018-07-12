@@ -11,6 +11,11 @@ namespace App\Services\MI6;
 
 use Carbon\Carbon;
 
+/**
+ * Class DatabaseSecret
+ * @package App\Services\MI6
+ * This class stores secrets in database
+ */
 class DatabaseSecret implements SecretService
 {
 
