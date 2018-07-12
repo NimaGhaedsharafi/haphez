@@ -10,11 +10,16 @@ branches:
   only:
   - master
 
-before_script:
+cache:
+    directories:
+      - $HOME/.composer/cache
+
+before_install:
+- phpenv config-rm xdebug.ini
 - cp travis/.env.travis .env
 - mysql -e 'create database testing;'
 - composer self-update
-- composer install --no-interaction
+- composer install --no-interaction --no-suggest
 - php artisan key:generate
 - php artisan migrate --force
 
