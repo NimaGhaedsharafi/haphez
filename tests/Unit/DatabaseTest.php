@@ -14,7 +14,7 @@ use App\Services\MI6\DatabaseSecret;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use Services\MI6\Exceptions\NotFound;
+use App\Services\MI6\Exceptions\NotFound;
 
 class DatabaseTest extends TestCase
 {
