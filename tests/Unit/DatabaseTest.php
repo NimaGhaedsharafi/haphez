@@ -52,8 +52,9 @@ class DatabaseTest extends TestCase
     {
         /** @var DatabaseSecret $service */
         $service = new DatabaseSecret();
-        $publicId = $service->store('my secret', Carbon::now()->subDay());
+        $publicId = $service->store('my secret', Carbon::now()->addHour());
 
+        Carbon::setTestNow(Carbon::tomorrow());
         $this->assertNotEmpty($publicId);
         $this->expectException(NotFound::class);
         $service->get($publicId);
