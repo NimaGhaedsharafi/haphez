@@ -18,4 +18,11 @@ interface SecretService
      * @return string PublicId
      */
     public function store(string $message, Carbon $expiresIn);
+
+
+    /**
+     * @param string $publicId
+     * @return string Message
+     */
+    public function get(string $publicId);
 }
