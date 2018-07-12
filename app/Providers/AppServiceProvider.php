@@ -31,9 +31,9 @@ class AppServiceProvider extends ServiceProvider
             \Log::info($app->config['secret']['provider']);
             if ($app->config['secret']['provider'] == 'cache') {
                 return new CacheSecret();
-            } else {
-                return new DatabaseSecret();
             }
+
+            return new DatabaseSecret();
         });
     }
 }
