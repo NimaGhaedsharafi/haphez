@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 class SecretController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
