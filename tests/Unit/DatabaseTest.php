@@ -71,4 +71,24 @@ class DatabaseTest extends TestCase
         $this->expectException(NotFound::class);
         $service->get($publicId);
     }
+
+    /**
+     * @test
+     */
+    public function test_keep_secrets_log_if_it_is_needed()
+    {
+        // set keep logs true
+        config(['secret.keep_logs' => true]);
+
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+
+        // let's store and get it together
+        $service->get($publicId = $service->store('my secret', Carbon::tomorrow()));
+
+        // but it should be at the database and delete_at should not be null
+        $secret = Secret::withTrashed()->where('public_id', $publicId)->first();
+        $this->assertNotNull($secret);
+        $this->assertNotNull($secret->deleted_at);
+    }
 }
