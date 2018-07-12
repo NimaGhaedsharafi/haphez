@@ -33,6 +33,10 @@ class DatabaseSecret implements SecretService
             throw new InvalidArgument('message');
         }
 
+        if ($expiresIn->isPast()) {
+            throw new InvalidArgument('expiration');
+        }
+
         $secret = new Secret();
         $secret->message = $message;
         $secret->expires_in = $expiresIn;
