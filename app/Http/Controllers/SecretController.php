@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Secret;
+use App\Services\MI6\Exceptions\NotFound;
 use App\Services\MI6\SecretService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,8 +35,12 @@ class SecretController extends Controller
         /** @var SecretService $service */
         $service = app(SecretService::class);
 
-        
-        $message = $service->get(trim($publicId));
+        try {
+            $message = $service->get(trim($publicId));
+        } catch (NotFound $e) {
+            return response(['error' => $e->getMessage()], 404);
+        }
+
         return [
             'message' => $message,
         ];
