@@ -8,4 +8,5 @@
 
 return [
     'keep_logs' => env('SECRET_KEEP_LOGS', false),
+    'provider' => env('SECRET_PROVIDER', 'database'),
 ];
