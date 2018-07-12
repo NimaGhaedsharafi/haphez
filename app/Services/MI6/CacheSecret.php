@@ -22,10 +22,10 @@ class CacheSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn): string
     {
-        $public_id = str_random(16);
-        Cache::put($public_id, $message, $expiresIn->diffInMinutes(Carbon::now()));
+        $publicId = str_random(16);
+        Cache::put($publicId, $message, $expiresIn->diffInMinutes(Carbon::now()));
 
-        return $public_id;
+        return $publicId;
     }
 
     /**
