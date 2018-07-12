@@ -54,6 +54,8 @@ class SecretTest extends TestCase
     {
         $response = json_decode($this->json('POST', route('secret.store'), ['message' => 'something-sort-of-secret'])
             ->assertStatus(200)->getContent());
+        // 2 days later
+        Carbon::setTestNow(Carbon::now()->addDays(2));
 
         $this->json('GET', route('secret.get', $response->url))
             ->assertStatus(404);
