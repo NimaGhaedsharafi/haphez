@@ -8,21 +8,17 @@
 
 namespace Tests\Unit;
 
-
-use App\Secret;
-use App\Services\MI6\RedisSecret;
+use App\Services\MI6\CacheSecret;
 use Carbon\Carbon;
 use Tests\TestCase;
-use App\Services\MI6\Exceptions\NotFound;
-use App\Services\MI6\Exceptions\InvalidArgument;
 
-class RedisTest extends TestCase
+class CacheTest extends TestCase
 {
 
     public function test_create_a_secret()
     {
-        /** @var RedisSecret $service */
-        $service = new RedisSecret();
+        /** @var CacheSecret $service */
+        $service = new CacheSecret();
         $publicId = $service->store('my secret', Carbon::tomorrow());
 
         $this->assertNotEmpty($publicId);

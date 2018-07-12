@@ -11,7 +11,7 @@ namespace App\Services\MI6;
 
 use Carbon\Carbon;
 
-class RedisSecret implements SecretService
+class CacheSecret implements SecretService
 {
 
     /**
@@ -21,7 +21,7 @@ class RedisSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn): string
     {
-        // TODO: Implement store() method.
+        
     }
 
     /**
