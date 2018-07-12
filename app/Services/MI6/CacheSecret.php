@@ -46,6 +46,9 @@ class CacheSecret implements SecretService
     {
         $secret = Cache::pull($publicId, null);
 
+        if ($secret === null) {
+            throw new NotFound();
+        }
         return $secret;
     }
 }
