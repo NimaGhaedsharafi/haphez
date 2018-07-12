@@ -34,8 +34,10 @@ class SecretController extends Controller
         /** @var SecretService $service */
         $service = app(SecretService::class);
 
+        
+        $message = $service->get(trim($publicId));
         return [
-            'message' => $service->get(trim($publicId)),
+            'message' => $message,
         ];
     }
 }
