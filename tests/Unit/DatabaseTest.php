@@ -11,10 +11,13 @@ namespace Tests\Unit;
 
 use App\Services\MI6\DatabaseSecret;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class DatabaseTest extends TestCase
 {
+    use DatabaseTransactions;
+    
     public function test_create_a_secret()
     {
         /** @var DatabaseSecret $service */
