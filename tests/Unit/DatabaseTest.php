@@ -51,4 +51,12 @@ class DatabaseTest extends TestCase
         $this->expectException(NotFound::class);
         $service->get($publicId);
     }
+
+    public function test_get_a_random_secret_should_throw_exception()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+        $this->expectException(NotFound::class);
+        $service->get('gibberish');
+    }
 }
