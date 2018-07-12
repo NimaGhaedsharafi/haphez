@@ -1,5 +1,7 @@
 # Haphez
 
+**It's not safe yet. [DONT USE IT]** 
+
 *Send sensitive information in email & chat properly!.*
 
 ## Who is Haphez? ##
