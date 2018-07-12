@@ -9,6 +9,7 @@
 namespace App\Services\MI6;
 
 
+use App\Services\MI6\Exceptions\InvalidArgument;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
@@ -22,6 +23,14 @@ class CacheSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn): string
     {
+        if (strlen($message) == 0) {
+            throw new InvalidArgument('message');
+        }
+
+        if ($expiresIn->isPast()) {
+            throw new InvalidArgument('expiration');
+        }
+
         $publicId = str_random(16);
         Cache::put($publicId, $message, $expiresIn->diffInMinutes(Carbon::now()));
 
