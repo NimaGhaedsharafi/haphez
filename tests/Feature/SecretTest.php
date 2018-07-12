@@ -23,8 +23,6 @@ class SecretTest extends TestCase
         $response = $this->json('POST', route('secret.store'), $data);
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas((new Secret())->getTable(), $data);
-
         $response->assertJsonStructure([
             'url'
         ]);
