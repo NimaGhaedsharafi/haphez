@@ -28,6 +28,9 @@ class DatabaseSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn) : string 
     {
+        if (strlen($message) == 0) {
+            throw new InvalidArgument();
+        }
         $secret = new Secret();
         $secret->message = $message;
         $secret->expires_in = $expiresIn;
