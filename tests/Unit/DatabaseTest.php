@@ -14,6 +14,7 @@ use App\Services\MI6\DatabaseSecret;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Services\MI6\Exceptions\NotFoundException;
 
 class DatabaseTest extends TestCase
 {
@@ -38,5 +39,16 @@ class DatabaseTest extends TestCase
         $this->assertNotEmpty($publicId);
 
         $this->assertEquals('my secret', $service->get($publicId));
+    }
+
+    public function test_get_an_expired_secret_should_throw_exception()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+        $publicId = $service->store('my secret', Carbon::now()->subDay());
+
+        $this->assertNotEmpty($publicId);
+        $this->expectException(NotFoundException::class);
+        $service->get($publicId);
     }
 }
