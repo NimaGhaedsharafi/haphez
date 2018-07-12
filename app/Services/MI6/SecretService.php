@@ -22,12 +22,12 @@ interface SecretService
      * @param Carbon $expiresIn
      * @return string PublicId
      */
-    public function store(string $message, Carbon $expiresIn);
+    public function store(string $message, Carbon $expiresIn) : string ;
 
 
     /**
      * @param string $publicId
      * @return string Message
      */
-    public function get(string $publicId);
+    public function get(string $publicId) : string;
 }
