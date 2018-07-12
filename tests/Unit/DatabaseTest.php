@@ -59,4 +59,16 @@ class DatabaseTest extends TestCase
         $this->expectException(NotFound::class);
         $service->get('gibberish');
     }
+
+    public function test_it_is_available_just_once()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+
+        // let's store and get it together
+        $service->get($publicId = $service->store('my secret', Carbon::tomorrow()));
+
+        $this->expectException(NotFound::class);
+        $service->get($publicId);
+    }
 }
