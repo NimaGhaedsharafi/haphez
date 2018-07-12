@@ -9,7 +9,7 @@
 This project named after Hafez, the famous Iranian poet, who keeps everyone's secret.
 
 ## What is Haphez? ##
-A Haphez generate a link that can be viewed only one time.
+Haphez generates a link that can be viewed only one time.
 
 <a class="msg" href="https://haphez.com/">Send a secret now!</a>
 
