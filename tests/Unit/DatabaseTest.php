@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\Services\MI6\Exceptions\NotFound;
+use App\Services\MI6\Exceptions\InvalidArgument;
 
 class DatabaseTest extends TestCase
 {
@@ -103,5 +104,14 @@ class DatabaseTest extends TestCase
         $secret = Secret::withTrashed()->where('public_id', $publicId)->first();
         $this->assertNotNull($secret);
         $this->assertNotNull($secret->deleted_at);
+    }
+
+    public function test_empty_string_should_not_be_stored_and_throw_exception()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+
+        $this->expectException(InvalidArgument::class);
+        $service->store('', Carbon::tomorrow());
     }
 }
