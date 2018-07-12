@@ -49,6 +49,9 @@ class DatabaseSecret implements SecretService
             throw new NotFound();
         }
 
+        // it should be delete after view!
+        $secret->delete();
+
         return $secret->message;
     }
 }
