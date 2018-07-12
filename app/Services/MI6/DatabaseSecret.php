@@ -25,7 +25,7 @@ class DatabaseSecret implements SecretService
      * @param Carbon $expiresIn
      * @return string PublicId
      */
-    public function store(string $message, Carbon $expiresIn)
+    public function store(string $message, Carbon $expiresIn) : string 
     {
         $secret = new Secret();
         $secret->message = $message;
@@ -40,7 +40,7 @@ class DatabaseSecret implements SecretService
      * @param string $publicId
      * @return string Message
      */
-    public function get(string $publicId)
+    public function get(string $publicId) : string
     {
         $secret = Secret::where('public_id', trim($publicId))->first();
 
