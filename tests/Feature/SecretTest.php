@@ -78,7 +78,7 @@ class SecretTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJsonStructure([
-            'message', 'expires_in'
+            'message'
         ]);
     }
 
