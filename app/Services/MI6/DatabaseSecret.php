@@ -10,6 +10,7 @@ namespace App\Services\MI6;
 
 
 use App\Secret;
+use App\Services\MI6\Exceptions\NotFound;
 use Carbon\Carbon;
 
 /**
