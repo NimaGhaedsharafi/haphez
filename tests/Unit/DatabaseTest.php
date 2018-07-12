@@ -17,12 +17,13 @@ use Tests\TestCase;
 class DatabaseTest extends TestCase
 {
     use DatabaseTransactions;
-    
+
     public function test_create_a_secret()
     {
         /** @var DatabaseSecret $service */
         $service = new DatabaseSecret();
         $publicId = $service->store('my secret', Carbon::tomorrow());
-
+        $this->assertNotEmpty($publicId);
+        
     }
 }
