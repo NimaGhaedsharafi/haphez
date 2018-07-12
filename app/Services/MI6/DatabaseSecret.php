@@ -43,6 +43,7 @@ class DatabaseSecret implements SecretService
      */
     public function get(string $publicId) : string
     {
+        /** @var Secret $secret */
         $secret = Secret::where('public_id', trim($publicId))->first();
 
         if ($secret === null || $secret->expires_in->isPast()) {
