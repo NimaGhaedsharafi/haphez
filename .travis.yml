@@ -25,4 +25,4 @@ before_install:
 
 script:
 - vendor/bin/phpunit
-- php travis/coverage-checker.php travis/clover.xml 75
+- php ./travis/coverage-checker.php ./travis/clover.xml 75
