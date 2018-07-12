@@ -9,6 +9,7 @@
 namespace Tests\Unit;
 
 
+use App\Secret;
 use App\Services\MI6\DatabaseSecret;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -23,7 +24,8 @@ class DatabaseTest extends TestCase
         /** @var DatabaseSecret $service */
         $service = new DatabaseSecret();
         $publicId = $service->store('my secret', Carbon::tomorrow());
+
         $this->assertNotEmpty($publicId);
-        
+        $this->assertDatabaseHas((new Secret())->getTable(), ['public_id' => $publicId]);
     }
 }
