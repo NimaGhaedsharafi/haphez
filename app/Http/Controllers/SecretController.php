@@ -42,7 +42,7 @@ class SecretController extends Controller
         try {
             $message = $service->get(trim($publicId));
         } catch (NotFound $e) {
-            return response(['error' => $e->getMessage()], 404);
+            return abort(404, $e->getMessage());
         }
 
         return [
