@@ -1,0 +1,22 @@
+language: php
+
+php:
+- 7.1
+
+services:
+- mysql
+
+branches:
+  only:
+  - master
+
+before_script:
+- cp travis/.env.travis .env
+- mysql -e 'create database testing;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
+
+script:
+- vendor/bin/phpunit
+- php travis/coverage-checker.php travis/clover.xml 75
