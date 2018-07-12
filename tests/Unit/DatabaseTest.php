@@ -30,6 +30,9 @@ class DatabaseTest extends TestCase
         $this->assertDatabaseHas((new Secret())->getTable(), ['public_id' => $publicId]);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function test_get_a_secret()
     {
         /** @var DatabaseSecret $service */
@@ -41,6 +44,9 @@ class DatabaseTest extends TestCase
         $this->assertEquals('my secret', $service->get($publicId));
     }
 
+    /**
+     * @throws \Exception
+     */
     public function test_get_an_expired_secret_should_throw_exception()
     {
         /** @var DatabaseSecret $service */
@@ -52,6 +58,9 @@ class DatabaseTest extends TestCase
         $service->get($publicId);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function test_get_a_random_secret_should_throw_exception()
     {
         /** @var DatabaseSecret $service */
@@ -60,6 +69,10 @@ class DatabaseTest extends TestCase
         $service->get('gibberish');
     }
 
+
+    /**
+     * @throws \Exception
+     */
     public function test_it_is_available_just_once()
     {
         /** @var DatabaseSecret $service */
@@ -73,7 +86,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
     public function test_keep_secrets_log_if_it_is_needed()
     {
