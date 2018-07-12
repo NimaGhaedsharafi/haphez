@@ -113,5 +113,9 @@ class DatabaseTest extends TestCase
 
         $this->expectException(InvalidArgument::class);
         $service->store('', Carbon::tomorrow());
+
+        // we don't care about zero-length messages as well
+        $this->expectException(InvalidArgument::class);
+        $service->store('   ', Carbon::tomorrow());
     }
 }
