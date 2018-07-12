@@ -9,6 +9,7 @@
 namespace App\Services\MI6;
 
 
+use App\Secret;
 use Carbon\Carbon;
 
 /**
@@ -26,7 +27,13 @@ class DatabaseSecret implements SecretService
      */
     public function store(string $message, Carbon $expiresIn)
     {
-        // TODO: Implement store() method.
+        $secret = new Secret();
+        $secret->message = $message;
+        $secret->expires_in = $expiresIn;
+        $secret->public_id = str_random(16);
+        $secret->save();
+
+        return $secret->public_id;
     }
 
     /**
