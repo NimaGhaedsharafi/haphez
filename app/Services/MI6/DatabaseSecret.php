@@ -42,6 +42,8 @@ class DatabaseSecret implements SecretService
      */
     public function get(string $publicId)
     {
-        // TODO: Implement get() method.
+        $secret = Secret::where('public_id', trim($publicId))->first();
+
+        return $secret->message;
     }
 }
