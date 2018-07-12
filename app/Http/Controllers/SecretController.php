@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Secret;
+use App\Services\MI6\SecretService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,14 +16,12 @@ class SecretController extends Controller
             'message' => 'required'
         ]);
 
-        $secret = new Secret();
-        $secret->message = $request->input('message');
-        $secret->expires_in = Carbon::now()->addDay($request->input('expires_in', 1));
-        $secret->public_id = str_random(16);
-        $secret->save();
+        /** @var SecretService $service */
+        $service = app(SecretService::class);
+        $publicId = $service->store($request->input('message'), Carbon::now()->addDay($request->input('expires_in', 1)));
 
         return [
-            'url' => $secret->public_id
+            'url' => $publicId
         ];
     }
 
