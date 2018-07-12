@@ -8,8 +8,9 @@
 
 namespace App\Services\MI6;
 
+use Carbon\Carbon;
 
 interface SecretService
 {
-
+    public function store(string $message, Carbon ExpiresIn);
 }
