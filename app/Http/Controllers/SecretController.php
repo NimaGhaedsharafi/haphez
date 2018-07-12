@@ -31,18 +31,11 @@ class SecretController extends Controller
      */
     public function get($publicId)
     {
-        $secret = Secret::where('public_id', trim($publicId))->first();
-
-        if ($secret === null || $secret->expires_in->isPast()) {
-            return response(['error' => 'secret not found or is expired'], 404);
-        }
-
-        // it should be set as deleted after read
-        $secret->delete();
+        /** @var SecretService $service */
+        $service = app(SecretService::class);
 
         return [
-            'message' => $secret->message,
-            'expires_in' => $secret->expires_in
+            'message' => $service->get(trim($publicId)),
         ];
     }
 }
