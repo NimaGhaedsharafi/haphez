@@ -40,6 +40,7 @@ class DatabaseSecret implements SecretService
     /**
      * @param string $publicId
      * @return string Message
+     * @throws \Exception
      */
     public function get(string $publicId) : string
     {
