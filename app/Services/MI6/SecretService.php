@@ -12,5 +12,5 @@ use Carbon\Carbon;
 
 interface SecretService
 {
-    public function store(string $message, Carbon ExpiresIn);
+    public function store(string $message, Carbon $expiresIn);
 }
