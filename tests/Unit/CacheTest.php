@@ -10,6 +10,7 @@ namespace Tests\Unit;
 
 use App\Services\MI6\CacheSecret;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
 class CacheTest extends TestCase
@@ -22,5 +23,6 @@ class CacheTest extends TestCase
         $publicId = $service->store('my secret', Carbon::tomorrow());
 
         $this->assertNotEmpty($publicId);
+        $this->assertTrue(Cache::has($publicId));
     }
 }
