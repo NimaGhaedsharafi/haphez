@@ -10,6 +10,11 @@ namespace App\Services\MI6;
 
 use Carbon\Carbon;
 
+/**
+ * Interface SecretService
+ * @package App\Services\MI6
+ * This service keeps message storage abstract in controller
+ */
 interface SecretService
 {
     /**
