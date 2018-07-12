@@ -13,5 +13,7 @@ use Tests\TestCase;
 
 class DatabaseTest extends TestCase
 {
-
+    public function test_create_a_secret()
+    {
+    }
 }
