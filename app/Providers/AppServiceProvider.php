@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\MI6\DatabaseSecret;
+use App\Services\MI6\SecretService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(SecretService::class, DatabaseSecret::class);
     }
 }
