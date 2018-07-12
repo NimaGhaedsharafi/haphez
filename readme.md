@@ -1,4 +1,4 @@
-# Haphez [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/?branch=master)
+# Haphez [![Build Status](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/badges/build.png?b=master)](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/build-status/master)[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/?branch=master)[![Code Coverage](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/?branch=master)[![Maintainability](https://api.codeclimate.com/v1/badges/4210791ace28ef7615d8/maintainability)](https://codeclimate.com/github/NimaGhaedsharafi/haphez/maintainability)
 
 **It's not safe yet. [DONT USE IT]** 
 
