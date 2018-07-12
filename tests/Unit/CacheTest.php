@@ -10,6 +10,7 @@ namespace Tests\Unit;
 
 use App\Services\MI6\CacheSecret;
 use App\Services\MI6\Exceptions\InvalidArgument;
+use App\Services\MI6\Exceptions\NotFound;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
@@ -34,6 +35,21 @@ class CacheTest extends TestCase
         $publicId = $service->store('my secret', Carbon::tomorrow());
 
         $this->assertEquals('my secret', $service->get($publicId));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_it_is_available_just_once()
+    {
+        /** @var CacheSecret $service */
+        $service = new CacheSecret();
+
+        // let's store and get it together
+        $service->get($publicId = $service->store('my secret', Carbon::tomorrow()));
+
+        $this->expectException(NotFound::class);
+        $service->get($publicId);
     }
 
     public function test_empty_string_should_not_be_stored_and_throw_exception()

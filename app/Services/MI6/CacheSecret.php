@@ -10,6 +10,7 @@ namespace App\Services\MI6;
 
 
 use App\Services\MI6\Exceptions\InvalidArgument;
+use App\Services\MI6\Exceptions\NotFound;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
@@ -43,6 +44,8 @@ class CacheSecret implements SecretService
      */
     public function get(string $publicId): string
     {
-        return Cache::get($publicId, null);
+        $secret = Cache::pull($publicId, null);
+
+        return $secret;
     }
 }
