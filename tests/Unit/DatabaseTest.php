@@ -118,4 +118,13 @@ class DatabaseTest extends TestCase
         $this->expectException(InvalidArgument::class);
         $service->store('   ', Carbon::tomorrow());
     }
+
+    public function test_passed_time_can_not_be_set_as_expiration_date()
+    {
+        /** @var DatabaseSecret $service */
+        $service = new DatabaseSecret();
+
+        $this->expectException(InvalidArgument::class);
+        $service->store('secret', Carbon::yesterday());
+    }
 }
