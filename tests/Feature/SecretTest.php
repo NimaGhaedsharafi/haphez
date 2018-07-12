@@ -32,19 +32,24 @@ class SecretTest extends TestCase
         ]);
     }
 
-
     /**
      * @test
      */
     public function get_secret_should_work_fine()
     {
-        factory(Secret::class)->create();
+        $data = [
+            'message' => 'something-sort-of-secret'
+        ];
 
-        $this->json('GET', route('secret.get', 'secret'))
-        ->assertStatus(200)
-        ->assertJsonStructure([
-            'message'
-        ]);
+        $response = $this->json('POST', route('secret.store'), $data);
+        $response->assertStatus(200);
+
+        $response = json_decode($response->getContent());
+        $this->json('GET', route('secret.get', $response->url))
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'message'
+            ]);
     }
 
     /**
