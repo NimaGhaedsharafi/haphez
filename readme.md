@@ -1,4 +1,4 @@
-# Haphez
+# Haphez [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/NimaGhaedsharafi/haphez/?branch=master)
 
 **It's not safe yet. [DONT USE IT]** 
 
